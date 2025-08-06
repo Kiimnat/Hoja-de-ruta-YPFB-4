@@ -41,12 +41,16 @@ document.getElementById("correspondenciaForm").addEventListener("submit", functi
   const instructivoTexto = doc.splitTextToSize(instructivo, 185);
   doc.text(instructivoTexto, 12, 148);
 
-const pdfUrl = doc.output('bloburl');
+  const pdfUrl = doc.output('bloburl');
   const printWindow = window.open(pdfUrl);
-  printWindow.focus();
 
-  printWindow.onload = function () {
-    printWindow.print();
-    form.reset();  // Limpia el formulario justo después de abrir impresión
-  };
+  if (printWindow) {
+    printWindow.focus();
+    printWindow.onload = function () {
+      printWindow.print();
+      form.reset(); // ✅ AHORA FUNCIONA CORRECTAMENTE
+    };
+  } else {
+    alert("Por favor, permite ventanas emergentes para generar e imprimir el documento.");
+  }
 });
