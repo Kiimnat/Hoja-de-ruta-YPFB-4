@@ -12,7 +12,9 @@ document.getElementById("destinatarioSelect").addEventListener("change", functio
 
 document.getElementById("correspondenciaForm").addEventListener("submit", function (e) {
   e.preventDefault();
-
+  
+  const form = document.getElementById("correspondenciaForm");
+  
   const destinatarioRaw = document.getElementById("destinatarioSelect").value;
   if (!destinatarioRaw) {
     alert("Por favor selecciona un destinatario.");
